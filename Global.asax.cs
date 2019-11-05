@@ -14,6 +14,13 @@ namespace DevExpressRichEditIssue
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 
 			DevExpress.Web.Office.DocumentManager.StateProvider = new MockOfficeStateProvider();
+
+			AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+		}
+
+		private void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+		{
+			System.Diagnostics.Trace.WriteLine(e.Exception.ToString());
 		}
 	}
 }
