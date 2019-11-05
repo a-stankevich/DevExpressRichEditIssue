@@ -1,0 +1,19 @@
+﻿<p>
+    <ul>
+        <li><a href="/?fileName=BadList.docx">Bad file, causes error</a></li>
+        <li><a href="/?fileName=GoodList.docx">Good file, no error</a></li>
+    </ul>
+</p>
+
+@if (!string.IsNullOrEmpty(ViewBag.FileName))
+{
+    @Html.DevExpress().RichEdit(settings =>
+    {
+        settings.Name = "FormsRTF";
+        settings.Settings.SpellChecker.Enabled = true;
+
+        settings.Height = 800;
+        settings.Width = 1000;
+
+    }).Open(ViewBag.FileName).GetHtml()
+}
